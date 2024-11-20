@@ -1,5 +1,5 @@
 workflowExternalId: wf_icapi_data_pipeline
-version: '1'
+version: '3'
 workflowDefinition:
   tasks:
     - externalId: icapi_assets_extractor
@@ -26,6 +26,8 @@ workflowDefinition:
       retries: 3
       timeout: 3600
       onFailure: abortWorkflow
+      dependsOn:
+        - externalId: icapi_timeseries_extractor
     - externalId: create_asset_hierarchy
       type: transformation
       parameters:
