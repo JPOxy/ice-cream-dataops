@@ -50,6 +50,7 @@ workflowDefinition:
         - externalId: icapi_assets_extractor
         - externalId: icapi_timeseries_extractor
     - externalId: oee_timeseries
+      type: function
       parameters:
         function:
           externalId: oee_timeseries
