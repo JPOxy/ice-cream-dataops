@@ -22,7 +22,7 @@ workflowDefinition:
       type: function
       parameters:
         function:
-          externalId: icapi_datapoionts_extractor
+          externalId: icapi_datapoints_extractor
       retries: 3
       timeout: 3600
       onFailure: abortWorkflow
@@ -58,5 +58,5 @@ workflowDefinition:
       timeout: 3600
       onFailure: abortWorkflow
       dependsOn:
-        - externalId: icapi_datapoionts_extractor
+        - externalId: icapi_datapoints_extractor
         - externalId: icapi_ts_assets_contextualization
