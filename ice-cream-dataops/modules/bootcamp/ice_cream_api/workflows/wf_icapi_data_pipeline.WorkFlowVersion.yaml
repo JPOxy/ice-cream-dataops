@@ -2,58 +2,58 @@ workflowExternalId: wf_icapi_data_pipeline
 version: '1'
 workflowDefinition:
   tasks:
-  - externalId: icapi_assets_extractor
-    type: function
-    parameters:
-      function:
-        externalId: icapi_assets_extractor
-    retries: 3
-    timeout: 3600
-    onFailure: abortWorkflow
-  - externalId: icapi_timeseries_extractor
-    type: function
-    parameters:
-      function:
-        externalId: icapi_timeseries_extractor
-    retries: 3
-    timeout: 3600
-    onFailure: abortWorkflow
-  - externalId: icapi_datapoints_extractor
-    type: function
-    parameters:
-      function:
-        externalId: icapi_datapoionts_extractor
-    retries: 3
-    timeout: 3600
-    onFailure: abortWorkflow
-  - externalId: create_asset_hierarchy
-    type: transformation
-    parameters:
-      transformation:
-        externalId: create_asset_hierarchy
-    retries: 3
-    timeout: 3600
-    onFailure: abortWorkflow
-    dependsOn:
-      - externalID: icapi_assets_extractor
-  - externalId: assets_conextualization
-    type: transformation
-    parameters:
-      transformation:
-        externalId: assets_conextualization
-    retries: 3
-    timeout: 3600
-    onFailure: abortWorkflow
-    dependsOn:
-      - externalID: icapi_assets_extractor
-      - externalID: icapi_timeseries_extractor
-  - externalId: oee_timeseries
-    parameters:
-      function:
-        externalId: oee_timeseries
-    retries: 3
-    timeout: 3600
-    onFailure: abortWorkflow
-    dependsOn:
-      - externalID: icapi_datapoionts_extractor
-      - externalID: assets_conextualization
+    - externalId: icapi_assets_extractor
+      type: function
+      parameters:
+        function:
+          externalId: icapi_assets_extractor
+      retries: 3
+      timeout: 3600
+      onFailure: abortWorkflow
+    - externalId: icapi_timeseries_extractor
+      type: function
+      parameters:
+        function:
+          externalId: icapi_timeseries_extractor
+      retries: 3
+      timeout: 3600
+      onFailure: abortWorkflow
+    - externalId: icapi_datapoints_extractor
+      type: function
+      parameters:
+        function:
+          externalId: icapi_datapoionts_extractor
+      retries: 3
+      timeout: 3600
+      onFailure: abortWorkflow
+    - externalId: create_asset_hierarchy
+      type: transformation
+      parameters:
+        transformation:
+          externalId: create_asset_hierarchy
+      retries: 3
+      timeout: 3600
+      onFailure: abortWorkflow
+      dependsOn:
+        - externalId: icapi_assets_extractor
+    - externalId: icapi_ts_assets_contextualization
+      type: transformation
+      parameters:
+        transformation:
+          externalId: icapi_ts_assets_contextualization
+      retries: 3
+      timeout: 3600
+      onFailure: abortWorkflow
+      dependsOn:
+        - externalId: icapi_assets_extractor
+        - externalId: icapi_timeseries_extractor
+    - externalId: oee_timeseries
+      parameters:
+        function:
+          externalId: oee_timeseries
+      retries: 3
+      timeout: 3600
+      onFailure: abortWorkflow
+      dependsOn:
+        - externalId: icapi_datapoionts_extractor
+        - externalId: icapi_ts_assets_contextualization
